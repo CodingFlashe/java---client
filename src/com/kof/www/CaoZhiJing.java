@@ -39,22 +39,22 @@ public class CaoZhiJing implements Player{
                 stand = false;
                 before = true;
                 break;
-            case KeyEvent.VK_NUMPAD1:
+            case KeyEvent.VK_COMMA:
                 stand = false;
                 j = true;
                 break;
-            case KeyEvent.VK_NUMPAD2:
+            case KeyEvent.VK_PERIOD:
                 stand = false;
                 k = true;
                 break;
-            case KeyEvent.VK_NUMPAD3:
+            case KeyEvent.VK_SLASH:
                 stand = false;
                 l = true;
                 break;
-            case KeyEvent.VK_NUMPAD4:
+            case KeyEvent.VK_SEMICOLON:
                 u = true;
                 break;
-            case KeyEvent.VK_NUMPAD5:
+            case KeyEvent.VK_QUOTE:
                 i = true;
                 break;
         }
@@ -78,19 +78,19 @@ public class CaoZhiJing implements Player{
                 after = false;
                 before = false;
                 break;
-            case KeyEvent.VK_NUMPAD1:// 1
+            case KeyEvent.VK_COMMA:// 1
                 j = false;
                 break;
-            case KeyEvent.VK_NUMPAD2:// 2
+            case KeyEvent.VK_PERIOD:// 2
                 k = false;
                 break;
-            case KeyEvent.VK_NUMPAD3:// 3
+            case KeyEvent.VK_SLASH:// 3
                 l = false;
                 break;
-            case KeyEvent.VK_NUMPAD4:// 4
+            case KeyEvent.VK_SEMICOLON:// 4
                 u = false;
                 break;
-            case KeyEvent.VK_NUMPAD5:// 5
+            case KeyEvent.VK_QUOTE:// 5
                 i = false;
                 break;
         }
