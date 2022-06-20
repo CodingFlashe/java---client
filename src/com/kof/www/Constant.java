@@ -1,10 +1,5 @@
 package com.kof.www;
 
-/**
- * <p>常量类</p>
- * @author Bosen
- * 2020/11/14 10:15
- */
 public class Constant {
     /*
      * 窗口的宽高

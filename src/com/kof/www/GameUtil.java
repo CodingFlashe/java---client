@@ -7,11 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * <p>游戏工具类</p>
- * @author Bosen
- * 2020/11/14 21:33
- */
+
 public class GameUtil {
     private CaoZhiJing caoZhiJing;
     private BaShenAn baShenAn;

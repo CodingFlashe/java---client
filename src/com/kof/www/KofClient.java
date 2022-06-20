@@ -1,35 +1,62 @@
 package com.kof.www;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.WindowAdapter;
+import java.io.*;
+import java.net.ConnectException;
+import java.net.Socket;
 
-public class KofGame extends Frame {
-    /*
-     * 游戏启动主方法
-     */
-    public static void main(String[] args) {
-        KofGame mgf = new KofGame();
-        mgf.launchFrame();
-    }
-
-    /*
-     * 角色初始化
-     */
+public class KofClient extends Frame  {
     BaShenAn baShenAn = new BaShenAn(Constant.PLAYER_X,Constant.PLAYER_Y,
             Constant.PLAYER_WIDTH,Constant.PLAYER_HEIGHT);// 八神庵角色
-    CaoZhiJing caoZhiJing = new CaoZhiJing(Constant.GAME_WIDTH-Constant.PLAYER_X-Constant.PLAYER_WIDTH,
-            Constant.PLAYER_Y, Constant.PLAYER_WIDTH,Constant.PLAYER_HEIGHT);;// 草稚京角色
-
-    GameUtil gameUtil = new GameUtil(baShenAn,caoZhiJing);
-
+    CaoZhiJing caoZhiJing; // 草稚京角色
+    GameUtil gameUtil;
     Image bg = GameUtil.getImage("com/kof/www/images/bg.jpg");// 背景图
     Image portrait1 = GameUtil.getImage("com/kof/www/images/portrait1.png");// 玩家一头像
     Image portrait2 = GameUtil.getImage("com/kof/www/images/portrait2.png");// 玩家二头像
 
-    /*
-     * 绘画
-     */
+    public void startClient() throws Exception  {
+        try{
+//            JSONObject.toJSONString();
+//            JSONObject jsonObject = JSONObject.parseObject("");
+//            jsonObject.getObject("")
+            Socket s1=new Socket("127.0.0.1",10000);
+            PrintWriter pw=new PrintWriter(s1.getOutputStream());
+            BufferedReader br=new BufferedReader(new InputStreamReader(s1.getInputStream()));
+            String data1=JSONObject.toJSONString(baShenAn);
+            System.out.println("client data1="+data1);
+            String data2=br.readLine();
+            System.out.println("client data2="+data2);
+            caoZhiJing = JSON.parseObject(data2,CaoZhiJing.class);
+            pw.println(data1);
+            pw.flush();
+            System.out.println(caoZhiJing.x);
+
+
+            this.gameUtil = new GameUtil(baShenAn,caoZhiJing);
+            this.setTitle("kof拳皇");
+            this.setVisible(true);
+            this.setSize(Constant.GAME_WIDTH, Constant.GAME_HEIGHT);
+            this.setLocation(Constant.GAME_X, Constant.GAME_Y);
+            this.addWindowListener(new WindowAdapter() {
+                public void windowClosing(java.awt.event.WindowEvent e) {
+                    System.exit(0);
+                }
+            });
+
+            new PaintThread1().start();	// 启动重画窗口的线程
+            addKeyListener(new KeyMonitor1());   // 给窗口增加键盘的监听
+            new WriteThread(pw).start();
+            new ReadThread(br).start();
+        }catch(ConnectException e){
+            System.out.println("连接失败");
+        }
+
+    }
     @Override
     public void paint(Graphics g) {
         Color c =  g.getColor();
@@ -80,32 +107,59 @@ public class KofGame extends Frame {
         g.setColor(c);
     }
 
-    /*
-     * 初始化窗口
-     */
-    public void launchFrame() {
-        this.setTitle("kof拳皇");
-        this.setVisible(true);
-        this.setSize(Constant.GAME_WIDTH, Constant.GAME_HEIGHT);
-        this.setLocation(Constant.GAME_X, Constant.GAME_Y);
-        this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                System.exit(0);
-            }
-        });
-
-        new PaintThread().start();	// 启动重画窗口的线程
-        addKeyListener(new KeyMonitor());   // 给窗口增加键盘的监听
-
+    public static void main(String[] args) throws Exception {
+        new KofClient().startClient();
     }
 
-    /*
-     * 反复的重画窗口
-     */
-    class PaintThread extends Thread {
+
+
+    class WriteThread extends Thread{
+        PrintWriter pw;
+        WriteThread(PrintWriter pw){
+            this.pw=pw;
+        }
+
+        public void run() {
+            System.out.println("开始运行发送");
+            Mix1 mix1=new Mix1(baShenAn, gameUtil.blood1, gameUtil.blood2);
+            while(true){
+                String temp=JSONObject.toJSONString(mix1);
+                pw.println(temp);
+                System.out.println("发送的数据："+temp);
+                pw.flush();
+            }
+        }
+    }
+    class ReadThread extends Thread{
+        BufferedReader br;
+
+        ReadThread(BufferedReader br){
+            this.br=br;
+        }
+        public void run() {
+            System.out.println("开始运行接收");
+            while(true){
+                String data2=" ";
+                try {
+                    data2 = br.readLine();
+                    System.out.println("client data2"+data2);
+                   Mix2 temp2=JSON.parseObject(data2,Mix2.class);
+                    caoZhiJing = temp2.caoZhiJing;
+                    gameUtil.blood1=temp2.blood1;
+                    gameUtil.blood2=temp2.blood2;
+//                    repaint();
+                } catch (IOException e) {
+
+                }
+                  // 草稚京角色
+            }
+        }
+    }
+    class PaintThread1 extends Thread {
         public void run() {
             while (true) {
-                repaint();
+                repaint();  //调用update()
+                // 清除当前显示并再调用paint()方法
                 try {
                     Thread.sleep(55);
                 } catch (InterruptedException e) {
@@ -118,19 +172,17 @@ public class KofGame extends Frame {
     /*
      * 键盘监视内部类
      */
-    class KeyMonitor extends KeyAdapter {
+    class KeyMonitor1 extends KeyAdapter {
 
         public void keyPressed(java.awt.event.KeyEvent e) {
             if (gameUtil.ko){
                 gameUtil.addDirection(e);
             }
             baShenAn.addDirection(e);
-            caoZhiJing.addDirection(e);
         }
 
         public void keyReleased(java.awt.event.KeyEvent e) {
             baShenAn.minusDirection(e);
-            caoZhiJing.minusDirection(e);
         }
     }
 
@@ -146,5 +198,4 @@ public class KofGame extends Frame {
         paint(gOff);
         g.drawImage(offScreenImage, 0, 0, null);
     }
-
 }

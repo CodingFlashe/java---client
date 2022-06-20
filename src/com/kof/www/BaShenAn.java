@@ -3,24 +3,23 @@ package com.kof.www;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-/**
- * <p>角色八神庵：实体类</p>
- * @author Bosen
- * 2020/11/14 10:28
- */
 public class BaShenAn implements Player {
-    int x,y,width,height;
-    int tempW;
-    int speed = 10;// 移动的基础速度
-    boolean stand = true;// boolean值记录角色状态
-    int maxX = 99999;
-    long time = 0;// 角色出招时间
-    boolean before,after,down,j,k,l,u,i,peng,beaten,fly;
+    public int x,y,width,height;
+    public int tempW;
+    public int speed = 10;// 移动的基础速度
+    public boolean stand = true;// boolean值记录角色状态
+    public int maxX = 99999;
+    public long time = 0;// 角色出招时间
+    public boolean before,after,down,j,k,l,u,i,peng,beaten,fly;
+    public BaShenAn(){
+
+    }
     public BaShenAn(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+
     }
 
     /************************************************************************
@@ -31,32 +30,40 @@ public class BaShenAn implements Player {
             case KeyEvent.VK_S:
                 stand = false;
                 down = true;
+
                 break;
             case KeyEvent.VK_A:
                 stand = false;
                 after = true;
+
                 break;
             case KeyEvent.VK_D:
                 stand = false;
                 before = true;
+
                 break;
             case KeyEvent.VK_J:
                 stand = false;
                 j = true;
+
                 break;
             case KeyEvent.VK_K:
                 stand = false;
                 k = true;
+
                 break;
             case KeyEvent.VK_L:
                 stand = false;
                 l = true;
+
                 break;
             case KeyEvent.VK_U:
                 u = true;
+
                 break;
             case KeyEvent.VK_I:
                 i = true;
+
                 break;
         }
     }
@@ -66,6 +73,7 @@ public class BaShenAn implements Player {
      * 按下某个键，取消相应的方向
      ************************************************************************/
     public void minusDirection(KeyEvent e){
+
         clean();
         switch (e.getKeyCode()) {
             case KeyEvent.VK_S:
@@ -93,6 +101,7 @@ public class BaShenAn implements Player {
                 i = false;
                 break;
         }
+
     }
 
 
@@ -113,7 +122,7 @@ public class BaShenAn implements Player {
     }
     @Override
     public void stand(Graphics g) {
-        System.out.println("八神庵：站立");
+        //t.println("八神庵：站立");
         if (standCount >= 18) {
             standCount = 0;
         }
@@ -147,7 +156,7 @@ public class BaShenAn implements Player {
     @Override
     public void down(Graphics g) {
         if (k){
-            System.out.println("八神庵：组合技=下蹲+腿击");
+            //System.out.println("八神庵：组合技=下蹲+腿击");
             if (downKCount >= 11) {
                 downKCount=0;
             }
@@ -169,7 +178,7 @@ public class BaShenAn implements Player {
             return;
         }
 
-        System.out.println("八神庵：下蹲防御");
+        //System.out.println("八神庵：下蹲防御");
         if (downCount >= 6) {
             downCount=0;
         }
@@ -198,7 +207,7 @@ public class BaShenAn implements Player {
     }
     @Override
     public void after(Graphics g) {
-        System.out.println("八神庵：后退");
+        //System.out.println("八神庵：后退");
         if (afterCount >= 9) {
             afterCount=0;
         }
@@ -224,7 +233,7 @@ public class BaShenAn implements Player {
     }
     @Override
     public void before(Graphics g) {
-        System.out.println("八神庵：前进");
+        //System.out.println("八神庵：前进");
         if (!l){
             if (beforeCount >= 9) {
                 beforeCount=0;
@@ -265,7 +274,7 @@ public class BaShenAn implements Player {
             beatenCount=0;
             beaten = false;
         }
-        System.out.println("八神庵：挨揍");
+        //System.out.println("八神庵：挨揍");
         g.drawImage(beatenImgs[beatenCount], x, y, width+80,
                 height,null,null);
         tempW = width;
@@ -313,7 +322,7 @@ public class BaShenAn implements Player {
     public void j(Graphics g) {
         time = System.currentTimeMillis();
         if (after){
-            System.out.println("八神庵：组合技=后退+拳击");
+            //System.out.println("八神庵：组合技=后退+拳击");
             if (afterJCount >= 8) {
                 afterJCount=0;
             }
@@ -328,7 +337,7 @@ public class BaShenAn implements Player {
             return;
         }
         if (before){
-            System.out.println("八神庵：组合技=前进+拳击");
+            //System.out.println("八神庵：组合技=前进+拳击");
             if (beforeJCount >= 8) {
                 beforeJCount=0;
             }
@@ -344,7 +353,7 @@ public class BaShenAn implements Player {
             }
             return;
         }
-        System.out.println("八神庵：拳击");
+        //System.out.println("八神庵：拳击");
         if (jCount >= 4) {
             jCount=0;
         }
@@ -391,7 +400,7 @@ public class BaShenAn implements Player {
     public void k(Graphics g) {
         time = System.currentTimeMillis();
         if (after){
-            System.out.println("八神庵：组合技=后退+腿击");
+            //System.out.println("八神庵：组合技=后退+腿击");
             if (afterKCount >= 10) {
                 afterKCount=0;
             }
@@ -416,7 +425,7 @@ public class BaShenAn implements Player {
             return;
         }
         if (before){
-            System.out.println("八神庵：组合技=前进+腿击");
+            //System.out.println("八神庵：组合技=前进+腿击");
             if (beforeKCount >= 9) {
                 beforeKCount=0;
             }
@@ -438,7 +447,7 @@ public class BaShenAn implements Player {
             }
             return;
         }
-        System.out.println("八神庵：腿击");
+        //System.out.println("八神庵：腿击");
         if (kCount >= 4) {
             kCount=0;
         }
@@ -479,7 +488,7 @@ public class BaShenAn implements Player {
     public void l(Graphics g) {
         stand = false;
         if (after){
-            System.out.println("八神庵：向后闪避");
+            //System.out.println("八神庵：向后闪避");
             if (lCount1 >= 9) {
                 lCount1=0;
             }
@@ -489,7 +498,7 @@ public class BaShenAn implements Player {
                 x -= 3*speed;
             }
         }else{
-            System.out.println("八神庵：向前闪避");
+            //System.out.println("八神庵：向前闪避");
             if (lCount2 >= 1) {
                 lCount2=0;
             }
@@ -524,7 +533,7 @@ public class BaShenAn implements Player {
     @Override
     public void u(Graphics g) {
         time = System.currentTimeMillis();
-        System.out.println("八神庵：技能一");
+        //System.out.println("八神庵：技能一");
         if (uCount < 18) {
             g.drawImage(uImgs1[uCount], x, y, width*3/2,height,null,null);
             g.drawImage(uImgs2[uCount], x+2*width, y-(3*height/2-height), 2*width,3*height/2,null,null);
@@ -554,7 +563,7 @@ public class BaShenAn implements Player {
     }
     @Override
     public void i(Graphics g) {
-        System.out.println("八神庵：技能二");
+        //System.out.println("八神庵：技能二");
         if (iCount < 18) {
             g.drawImage(iImgs[iCount],x+width*3/2, y-height+10, width*3/2,
                     2*height,null,null);
