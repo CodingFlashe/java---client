@@ -7,15 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="65c4fce8-f99a-4c51-b599-c1f71f1ad12c" name="Default Changelist" comment="change Caozhijing">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kof.iml" beforeDir="false" afterPath="$PROJECT_DIR$/kof.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/BaShenAn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/BaShenAn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/CaoZhiJing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/CaoZhiJing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kof/www/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/Constant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/GameUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/GameUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kof/www/init.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/init.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,7 +354,7 @@
       <workItem from="1655691727501" duration="8787000" />
       <workItem from="1655704023822" duration="3436000" />
       <workItem from="1655710970096" duration="195000" />
-      <workItem from="1655720169678" duration="3659000" />
+      <workItem from="1655720169678" duration="4671000" />
     </task>
     <task id="LOCAL-00001" summary="finish b1,b3">
       <created>1654623554138</created>
@@ -379,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654624513685</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="change Caozhijing">
+      <created>1655723941314</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1655723941314</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

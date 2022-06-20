@@ -82,11 +82,11 @@ public class KofClient extends Frame  {
         g.drawRect(769,199,502,42);
         g.drawRect(79,199,502,42);
         g.setColor(Color.magenta);
-        g.drawString(gameUtil.blood1+"%",595,230);
-        g.drawString(gameUtil.blood2+"%",700,230);
+        g.drawString(gameUtil.baShenAn.blood1+"%",595,230);
+        g.drawString(gameUtil.caoZhiJing.blood2+"%",700,230);
         g.setColor(Color.pink);
-        g.fillRect(80,200,5*gameUtil.blood1,40);
-        g.fillRect(770+(500-5*gameUtil.blood2),200,5*gameUtil.blood2,40);
+        g.fillRect(80,200,5*gameUtil.baShenAn.blood1,40);
+        g.fillRect(770+(500-5*gameUtil.caoZhiJing.blood2),200,5*gameUtil.caoZhiJing.blood2,40);
 
         // 碰撞检测
         boolean peng = baShenAn.getRect().intersects(caoZhiJing.getRect());
@@ -100,7 +100,7 @@ public class KofClient extends Frame  {
         // 画草稚京
         caoZhiJing.drawSelf(g,peng);
         // ko
-        if (gameUtil.blood1 <= 0 || gameUtil.blood2 <= 0){
+        if (gameUtil.baShenAn.blood1 <= 0 || gameUtil.caoZhiJing.blood2 <= 0){
             gameUtil.ko(g);
         }
 
@@ -121,9 +121,8 @@ public class KofClient extends Frame  {
 
         public void run() {
             System.out.println("开始运行发送");
-            Mix1 mix1=new Mix1(baShenAn, gameUtil.blood1, gameUtil.blood2);
             while(true){
-                String temp=JSONObject.toJSONString(mix1);
+                String temp=JSONObject.toJSONString(baShenAn);
                 pw.println(temp);
                 System.out.println("发送的数据："+temp);
                 pw.flush();
@@ -143,11 +142,8 @@ public class KofClient extends Frame  {
                 try {
                     data2 = br.readLine();
                     System.out.println("client data2"+data2);
-                   Mix2 temp2=JSON.parseObject(data2,Mix2.class);
-                    caoZhiJing = temp2.caoZhiJing;
-                    gameUtil.blood1=temp2.blood1;
-                    gameUtil.blood2=temp2.blood2;
-//                    repaint();
+                    caoZhiJing = JSONObject.parseObject(data2,CaoZhiJing.class);
+                    repaint();
                 } catch (IOException e) {
 
                 }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class BaShenAn implements Player {
+    public int blood1;
     public int x,y,width,height;
     public int tempW;
     public int speed = 10;// 移动的基础速度
@@ -19,7 +20,7 @@ public class BaShenAn implements Player {
         this.y = y;
         this.width = width;
         this.height = height;
-
+        blood1=100;
     }
 
     /************************************************************************
