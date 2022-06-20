@@ -4,7 +4,8 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class BaShenAn implements Player {
-    public int blood1;
+    public boolean ko;
+    public int blood1;    //存储cao的血量
     public int x,y,width,height;
     public int tempW;
     public int speed = 10;// 移动的基础速度
@@ -21,6 +22,7 @@ public class BaShenAn implements Player {
         this.width = width;
         this.height = height;
         blood1=100;
+        ko=false;
     }
 
     /************************************************************************

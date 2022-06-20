@@ -55,11 +55,11 @@ public class KofGame extends Frame {
         g.drawRect(769,199,502,42);
         g.drawRect(79,199,502,42);
         g.setColor(Color.magenta);
-        g.drawString(gameUtil.baShenAn.blood1+"%",595,230);
-        g.drawString(gameUtil.caoZhiJing.blood2+"%",700,230);
+        g.drawString(gameUtil.blood1+"%",595,230);
+        g.drawString(gameUtil.blood2+"%",700,230);
         g.setColor(Color.pink);
-        g.fillRect(80,200,5*gameUtil.baShenAn.blood1,40);
-        g.fillRect(770+(500-5*gameUtil.caoZhiJing.blood2),200,5*gameUtil.caoZhiJing.blood2,40);
+        g.fillRect(80,200,5*gameUtil.blood1,40);
+        g.fillRect(770+(500-5*gameUtil.blood2),200,5*gameUtil.blood2,40);
 
         // 碰撞检测
         boolean peng = baShenAn.getRect().intersects(caoZhiJing.getRect());
@@ -73,7 +73,7 @@ public class KofGame extends Frame {
         // 画草稚京
         caoZhiJing.drawSelf(g,peng);
         // ko
-        if (gameUtil.baShenAn.blood1 <= 0 || gameUtil.caoZhiJing.blood2 <= 0){
+        if (gameUtil.blood1 <= 0 || gameUtil.blood2 <= 0){
             gameUtil.ko(g);
         }
 

@@ -11,13 +11,13 @@ import java.net.URL;
 public class GameUtil {
     public CaoZhiJing caoZhiJing;
     public BaShenAn baShenAn;
-//    public int blood1;
-//    public int blood2;
+    public int blood1;
+    public int blood2;
     public boolean ko;
 
     public GameUtil(BaShenAn baShenAn,CaoZhiJing caoZhiJing) {
-//        this.blood1 = 100;
-//        this.blood2 = 100;
+        this.blood2 = baShenAn.blood1;
+        this.blood1 = caoZhiJing.blood2;
         this.ko = false;
         this.baShenAn = baShenAn;
         this.caoZhiJing = caoZhiJing;
@@ -93,13 +93,14 @@ public class GameUtil {
             }
         }
     }
-    
+
     /*
      * 草稚京血量
      */
     public void caoZhiJingBlood(){
-        if (baShenAn.blood1 > 0 && caoZhiJing.blood2 > 0){
-            caoZhiJing.blood2 -= 1;
+        if (blood1 > 0 && blood2 > 0){
+            blood2 -= 1;
+            baShenAn.blood1-=1;
         }
     }
 
@@ -107,11 +108,12 @@ public class GameUtil {
      * 八神庵血量
      */
     public void baShenAnBlood(){
-        if (baShenAn.blood1 > 0 && caoZhiJing.blood2 > 0) {
-            baShenAn.blood1 -= 1;
+        if (blood1 > 0 && blood2 > 0) {
+            blood1 -= 1;
+            caoZhiJing.blood2-=1;
         }
     }
-    
+
     /*
      * ko画面
      */
@@ -121,7 +123,7 @@ public class GameUtil {
         g.setColor(Color.white);
         g.setFont(f);
         ko = true;
-        if (caoZhiJing.blood2 <= 0){
+        if (blood2 <= 0){
             System.out.println("KO！！！玩家一取得了游戏的胜利！");
             g.drawString("玩家一取得了游戏的胜利！！！",850,700);
         }else{
@@ -132,13 +134,14 @@ public class GameUtil {
         g.drawImage(koImg, 0, 0, Constant.GAME_WIDTH,Constant.GAME_HEIGHT,
                 null,null);
     }
-    
+
     /*
      * ko后的重置游戏键盘监听
      */
     public void addDirection(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_ENTER){
-            baShenAn.blood1 = caoZhiJing.blood2 = 100;
+            blood1 = blood2 = 100;
+            baShenAn.blood1=caoZhiJing.blood2=100;
             ko = false;
             baShenAn.x = Constant.PLAYER_X;
             caoZhiJing.x = Constant.GAME_WIDTH-Constant.PLAYER_X-Constant.PLAYER_WIDTH;
@@ -158,7 +161,7 @@ public class GameUtil {
         }
         return bi;
     }
-    
+
     /*
      * 草稚京挨揍或被击飞
      */

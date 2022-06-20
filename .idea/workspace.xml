@@ -14,6 +14,7 @@
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/kof/www/KofServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/KofServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/kof/www/init.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kof/www/init.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +188,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../java code" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -212,7 +213,7 @@
       <recent name="D:\JavaProject\kof\src\com\kof\www\images\bashenan\after" />
     </key>
   </component>
-  <component name="RunManager" selected="应用程序.KofClient">
+  <component name="RunManager" selected="应用程序.init">
     <configuration name="ImageDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kof.www.ImageDemo" />
       <module name="kof" />
@@ -293,6 +294,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.init" />
         <item itemvalue="应用程序.KofClient" />
         <item itemvalue="应用程序.KofServer" />
         <item itemvalue="应用程序.KofGame" />
@@ -354,7 +356,8 @@
       <workItem from="1655691727501" duration="8787000" />
       <workItem from="1655704023822" duration="3436000" />
       <workItem from="1655710970096" duration="195000" />
-      <workItem from="1655720169678" duration="4671000" />
+      <workItem from="1655720169678" duration="3659000" />
+      <workItem from="1655730680420" duration="232000" />
     </task>
     <task id="LOCAL-00001" summary="finish b1,b3">
       <created>1654623554138</created>
@@ -377,14 +380,7 @@
       <option name="project" value="LOCAL" />
       <updated>1654624513685</updated>
     </task>
-    <task id="LOCAL-00004" summary="change Caozhijing">
-      <created>1655723941314</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1655723941314</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -426,6 +422,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finish b1,b3" />

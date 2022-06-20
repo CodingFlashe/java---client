@@ -9,7 +9,8 @@ import java.awt.event.KeyEvent;
  * 2020/11/14 10:30
  */
 public class CaoZhiJing implements Player{
-    public int blood2;
+    public boolean ko;
+    public int blood2;      //存储ba的血量
     public int x,y,width,height;
     public int tempX;
     public long time = 0;// 角色出招时间
@@ -25,6 +26,7 @@ public class CaoZhiJing implements Player{
         this.width = width;
         this.height = height;
         blood2=100;
+        ko=false;
     }
 
     /************************************************************************

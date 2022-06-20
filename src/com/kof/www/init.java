@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class init {
 
-    private JFrame frame = new JFrame("背景图片");
+    private JFrame frame = new JFrame("客户端");
 
     private JPanel imagePanel;
 
@@ -60,9 +60,15 @@ public class init {
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    new KofClient().startClient();
+                    frame.dispose();
+                    frame.setVisible(false);
+                } catch (Exception ex) {
 
-                frame.dispose();
-                frame.setVisible(false);
+                }
+
+
             }
         });
         JButton b3 = new JButton("结束游戏");

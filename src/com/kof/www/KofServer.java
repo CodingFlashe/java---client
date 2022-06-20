@@ -22,6 +22,7 @@ public class KofServer extends Frame{
     Image portrait2 = GameUtil.getImage("com/kof/www/images/portrait2.png");// 玩家二头像
     public void startServer() throws Exception {
         ServerSocket s2=new ServerSocket(10000);
+
         Socket s=s2.accept();
         PrintWriter pw=new PrintWriter(s.getOutputStream());
         BufferedReader br=new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -74,11 +75,11 @@ public class KofServer extends Frame{
         g.drawRect(769,199,502,42);
         g.drawRect(79,199,502,42);
         g.setColor(Color.magenta);
-        g.drawString(gameUtil.baShenAn.blood1+"%",595,230);
-        g.drawString(gameUtil.caoZhiJing.blood2+"%",700,230);
+        g.drawString(gameUtil.blood1+"%",595,230);
+        g.drawString(gameUtil.blood2+"%",700,230);
         g.setColor(Color.pink);
-        g.fillRect(80,200,5*gameUtil.baShenAn.blood1,40);
-        g.fillRect(770+(500-5*gameUtil.caoZhiJing.blood2),200,5*gameUtil.caoZhiJing.blood2,40);
+        g.fillRect(80,200,5*gameUtil.blood1,40);
+        g.fillRect(770+(500-5*gameUtil.blood2),200,5*gameUtil.blood2,40);
 
         // 碰撞检测
         boolean peng = baShenAn.getRect().intersects(caoZhiJing.getRect());
@@ -92,7 +93,7 @@ public class KofServer extends Frame{
         // 画草稚京
         caoZhiJing.drawSelf(g,peng);
         // ko
-        if (gameUtil.baShenAn.blood1 <= 0 || gameUtil.caoZhiJing.blood2 <= 0){
+        if (gameUtil.blood1 <= 0 || gameUtil.blood2 <= 0){
             gameUtil.ko(g);
         }
 
@@ -111,6 +112,8 @@ public class KofServer extends Frame{
         }
         public void run() {
             while(true){
+                caoZhiJing.ko= gameUtil.ko;
+                caoZhiJing.blood2= gameUtil.blood1;
                 String temp=JSONObject.toJSONString(caoZhiJing);
                 pw.println(temp);
                 System.out.println("发送的数据："+temp);
@@ -132,6 +135,8 @@ public class KofServer extends Frame{
                     data2 = br.readLine();
                     System.out.println("client data2" + data2);
                     baShenAn = JSON.parseObject(data2,BaShenAn.class);
+                    gameUtil.blood2=baShenAn.blood1;
+                    gameUtil.ko=baShenAn.ko;
                     repaint();
                 } catch (IOException e) {
 
